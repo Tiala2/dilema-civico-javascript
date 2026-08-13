@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Classes sociais
   const classesSociais = {
     baixa: { rendaInicial: 50, irpf: 0.075, consumo: 5 },
-    média: { rendaInicial: 100, irpf: 0.15, consumo: 10 },
+    mÃ©dia: { rendaInicial: 100, irpf: 0.15, consumo: 10 },
     alta: { rendaInicial: 200, irpf: 0.275, consumo: 20 }
   };
   let classeAtual = null;
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const finalBemestar = document.getElementById('final-bemestar');
   const mensagemFinal = document.getElementById('mensagem-final');
 
-  // Botões
+  // BotÃµes
   const btnJogar = document.getElementById('btn-jogar');
   const btnInstrucoes = document.getElementById('btn-instrucoes');
   const btnVoltarInstrucoes = document.getElementById('btn-voltar-instrucoes');
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnSonegar = document.getElementById('btn-sonegar');
   const btnVoltarMenu = document.getElementById('btn-voltar-menu');
 
-  // Pop-up de informações
+  // Pop-up de informaÃ§Ãµes
   const infoPopup = document.getElementById('info-popup');
   const voltarBtn = document.getElementById('voltar-btn');
   let popupTimeoutId = null;
@@ -51,30 +51,42 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnSonegarCrise = document.getElementById('btn-sonegar-crise');
   let criseAberta = false;
 
-  // Toast de alerta (fiscalização)
+  // Toast de alerta (fiscalizaÃ§Ã£o)
   const alertaToast = document.getElementById('alert-toast');
   const alertaToastMsg = document.getElementById('alert-toast-msg');
   let alertaTimeoutId = null;
 
   // Estado adicional de jogo
   let jogadorEstaSonegando = false; // flag ativada pela escolha na crise
-  let classeSelecionada = null;     // mantém a chave da classe ('baixa' | 'média' | 'alta')
+  let classeSelecionada = null;     // mantÃ©m a chave da classe ('baixa' | 'mÃ©dia' | 'alta')
   const emprestimosPorClasse = {
     baixa: 120,
-    média: 240,
+    mÃ©dia: 240,
     alta: 400,
   };
 
-  // Áudio
+  // Ãudio
   const audioFundo = document.getElementById('audio-fundo');
 
   function mostrarTela(nome) {
-    Object.values(telas).forEach(t => t.classList.add('hidden'));
-    telas[nome].classList.remove('hidden');
+    const telaDestino = telas[nome];
+    if (!telaDestino) return;
 
-   // Parar e reiniciar o áudio de fundo
-    audioFundo.currentTime = 0;
-    audioFundo.play();
+    Object.values(telas).forEach(t => {
+      t.classList.add('hidden');
+      t.classList.remove('screen-enter');
+    });
+
+    telaDestino.classList.remove('hidden');
+    void telaDestino.offsetWidth;
+    telaDestino.classList.add('screen-enter');
+
+    // Reinicia o Ã¡udio sem quebrar o fluxo quando o navegador bloquear autoplay.
+    if (audioFundo) {
+      audioFundo.currentTime = 0;
+      const playPromise = audioFundo.play();
+      if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
+    }
 
     // Sempre que trocar de tela, garantir que o pop-up esteja oculto
     if (nome !== 'resultado' && infoPopup) {
@@ -134,14 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rodada > totalRodadas) fimDeJogo();
     else {
       atualizarDisplays();
-      textoDecisao.textContent = 'Aguardando sua decisão...';
+      textoDecisao.textContent = 'Aguardando sua decisÃ£o...';
     }
   }
 
   function pagar() {
     // Se o jogador escolheu sonegar via crise, pular pagamento
     if (jogadorEstaSonegando) {
-      textoDecisao.textContent = 'Você optou por não pagar impostos nas próximas rodadas.';
+      textoDecisao.textContent = 'VocÃª optou por nÃ£o pagar impostos nas prÃ³ximas rodadas.';
       atualizarDisplays();
       setTimeout(proximaRodada, 800);
       return;
@@ -150,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const consumoRodada = classeAtual.consumo;
     moedas -= (irpfRodada + consumoRodada);
     bemEstar += 10;
-    textoDecisao.textContent = `Você pagou os impostos desta rodada (-${irpfRodada + consumoRodada} moedas).`;
+    textoDecisao.textContent = `VocÃª pagou os impostos desta rodada (-${irpfRodada + consumoRodada} moedas).`;
     atualizarDisplays();
     const tratado = verificarCriseFinanceira();
     if (!tratado) {
@@ -159,11 +171,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function sonegar() {
-    // Ganho e fiscalização 
+    // Ganho e fiscalizaÃ§Ã£o 
     const ganho = 8 + Math.floor(Math.random() * 8); // 8 a 15 moedas
     moedas += ganho;
     bemEstar -= 5;
-    let msg = `Você optou por sonegar nesta rodada (+${ganho} moedas).`;
+    let msg = `VocÃª optou por sonegar nesta rodada (+${ganho} moedas).`;
 
     // Probabilidade varia entre 10% e 35% a cada tentativa, para parecer mais "na sorte"
     const probFiscalizacao = 0.10 + Math.random() * 0.25; // [0.10, 0.35]
@@ -172,9 +184,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const perdaBemEstar = 10 + Math.floor(Math.random() * 11); // 10 a 20
       moedas -= multa;
       bemEstar -= perdaBemEstar;
-      msg += ` ⚠️ Você foi pego na auditoria! Penalidade (-${multa} moedas, -${perdaBemEstar} bem-estar).`;
-      // Exibe alerta visual de fiscalização
-      mostrarAlertaFiscalizacao('ALERTA: Você foi pego na auditoria!');
+      msg += ` âš ï¸ VocÃª foi pego na auditoria! Penalidade (-${multa} moedas, -${perdaBemEstar} bem-estar).`;
+      // Exibe alerta visual de fiscalizaÃ§Ã£o
+      mostrarAlertaFiscalizacao('ALERTA: VocÃª foi pego na auditoria!');
     }
     textoDecisao.textContent = msg;
     atualizarDisplays();
@@ -197,20 +209,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2500);
   }
 
-  // Verifica se moedas <= 0 e decide ação: 
+  // Verifica se moedas <= 0 e decide aÃ§Ã£o: 
   function verificarCriseFinanceira() {
     if (moedas <= 0) {
-      // 6ª (última) rodada negativa: pular pop-up e ir direto ao resultado
+      // 6Âª (Ãºltima) rodada negativa: pular pop-up e ir direto ao resultado
       if (rodada === totalRodadas) {
         fimDeJogo();
         return true;
       }
       if (crisePopup && !criseAberta && telas.jogo && !telas.jogo.classList.contains('hidden')) {
-        // Atualiza texto com valor do empréstimo pela classe
-        const chave = classeSelecionada || 'média';
-        const valorEmprestimo = emprestimosPorClasse[chave] ?? emprestimosPorClasse['média'];
+        // Atualiza texto com valor do emprÃ©stimo pela classe
+        const chave = classeSelecionada || 'mÃ©dia';
+        const valorEmprestimo = emprestimosPorClasse[chave] ?? emprestimosPorClasse['mÃ©dia'];
         if (criseTexto) {
-          criseTexto.textContent = `Você ficou sem moedas. Empréstimo disponível para sua classe: ${valorEmprestimo} moedas.`;
+          criseTexto.textContent = `VocÃª ficou sem moedas. EmprÃ©stimo disponÃ­vel para sua classe: ${valorEmprestimo} moedas.`;
         }
         crisePopup.style.display = 'flex';
         criseAberta = true;
@@ -226,15 +238,15 @@ document.addEventListener('DOMContentLoaded', () => {
     finalBemestar.textContent = bemEstar;
 
     if (bemEstar >= 70 && moedas >= 100)
-      mensagemFinal.textContent = 'Parabéns! Você manteve equilíbrio entre finanças e bem-estar.';
+      mensagemFinal.textContent = 'ParabÃ©ns! VocÃª manteve equilÃ­brio entre finanÃ§as e bem-estar.';
     else if (bemEstar < 60 && moedas > 150)
-      mensagemFinal.textContent = 'Você ficou rico, mas a sociedade entrou em colapso!';
+      mensagemFinal.textContent = 'VocÃª ficou rico, mas a sociedade entrou em colapso!';
     else if (bemEstar >= 60 && moedas < 80)
-      mensagemFinal.textContent = 'Você se sacrificou pelas pessoas — a sociedade agradece!';
+      mensagemFinal.textContent = 'VocÃª se sacrificou pelas pessoas â€” a sociedade agradece!';
     else
-      mensagemFinal.textContent = 'Resultado neutro — há espaço para melhorias!';
+      mensagemFinal.textContent = 'Resultado neutro â€” hÃ¡ espaÃ§o para melhorias!';
 
-    // Exibir pop-up 6 segundos após carregar a tela de resultado
+    // Exibir pop-up 6 segundos apÃ³s carregar a tela de resultado
     if (infoPopup) {
       if (popupTimeoutId) {
         clearTimeout(popupTimeoutId);
@@ -242,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
       popupTimeoutId = setTimeout(() => {
         // Garante que ainda estamos na tela de resultado antes de mostrar
         if (!telas.resultado.classList.contains('hidden')) {
-          infoPopup.style.display = 'flex'; // Usa flex para centralização conforme CSS
+          infoPopup.style.display = 'flex'; // Usa flex para centralizaÃ§Ã£o conforme CSS
         }
       }, 6000);
     }
@@ -267,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarTela('menu');
   }
 
-  // Eventos dos botões
+  // Eventos dos botÃµes
   btnJogar.addEventListener('click', iniciarJogo);
   btnInstrucoes.addEventListener('click', () => mostrarTela('instrucoes'));
   btnVoltarInstrucoes.addEventListener('click', () => mostrarTela('menu'));
@@ -276,24 +288,24 @@ document.addEventListener('DOMContentLoaded', () => {
   btnSonegar.addEventListener('click', sonegar);
   btnVoltarMenu.addEventListener('click', reiniciarParaMenu);
 
-  // Botão de fechar do pop-up
+  // BotÃ£o de fechar do pop-up
   if (voltarBtn) {
     voltarBtn.addEventListener('click', () => {
       infoPopup.style.display = 'none';
     });
   }
 
-  // Ações do pop-up de crise
+  // AÃ§Ãµes do pop-up de crise
   if (btnPedirEmprestimo) {
     btnPedirEmprestimo.addEventListener('click', () => {
-      const chave = classeSelecionada || 'média';
-      const valorEmprestimo = emprestimosPorClasse[chave] ?? emprestimosPorClasse['média'];
+      const chave = classeSelecionada || 'mÃ©dia';
+      const valorEmprestimo = emprestimosPorClasse[chave] ?? emprestimosPorClasse['mÃ©dia'];
       moedas += valorEmprestimo;
-      textoDecisao.textContent = `Você pegou um empréstimo de ${valorEmprestimo} moedas.`;
+      textoDecisao.textContent = `VocÃª pegou um emprÃ©stimo de ${valorEmprestimo} moedas.`;
       crisePopup.style.display = 'none';
       criseAberta = false;
       atualizarDisplays();
-      // Após resolver a crise, seguir para a próxima rodada
+      // ApÃ³s resolver a crise, seguir para a prÃ³xima rodada
       setTimeout(proximaRodada, 600);
     });
   }
@@ -301,11 +313,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnSonegarCrise) {
     btnSonegarCrise.addEventListener('click', () => {
       jogadorEstaSonegando = true;
-      textoDecisao.textContent = 'Você escolheu não pagar impostos nas próximas rodadas.';
+      textoDecisao.textContent = 'VocÃª escolheu nÃ£o pagar impostos nas prÃ³ximas rodadas.';
       crisePopup.style.display = 'none';
       criseAberta = false;
       atualizarDisplays();
-      // Após resolver a crise, seguir para a próxima rodada
+      // ApÃ³s resolver a crise, seguir para a prÃ³xima rodada
       setTimeout(proximaRodada, 600);
     });
   }
