@@ -55,6 +55,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const alertaToast = document.getElementById('alert-toast');
   const alertaToastMsg = document.getElementById('alert-toast-msg');
   let alertaTimeoutId = null;
+  let decisaoBloqueada = false;
+
+  function bloquearDecisao() {
+    decisaoBloqueada = true;
+    [btnPagar, btnSonegar].forEach(btn => {
+      if (btn) {
+        btn.disabled = true;
+        btn.setAttribute('aria-busy', 'true');
+      }
+    });
+  }
+
+  function liberarDecisao() {
+    decisaoBloqueada = false;
+    [btnPagar, btnSonegar].forEach(btn => {
+      if (btn) {
+        btn.disabled = false;
+        btn.removeAttribute('aria-busy');
+      }
+    });
+  }
 
   // Estado adicional de jogo
   let jogadorEstaSonegando = false; // flag ativada pela escolha na crise
@@ -71,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function mostrarTela(nome) {
     const telaDestino = telas[nome];
     if (!telaDestino) return;
+    if (nome !== 'jogo') liberarDecisao();
 
     Object.values(telas).forEach(t => {
       t.classList.add('hidden');
@@ -147,10 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
     else {
       atualizarDisplays();
       textoDecisao.textContent = 'Aguardando sua decisÃ£o...';
+      liberarDecisao();
     }
   }
 
   function pagar() {
+    if (decisaoBloqueada) return;
+    bloquearDecisao();
     // Se o jogador escolheu sonegar via crise, pular pagamento
     if (jogadorEstaSonegando) {
       textoDecisao.textContent = 'VocÃª optou por nÃ£o pagar impostos nas prÃ³ximas rodadas.';
@@ -171,6 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function sonegar() {
+    if (decisaoBloqueada) return;
+    bloquearDecisao();
     // Ganho e fiscalizaÃ§Ã£o 
     const ganho = 8 + Math.floor(Math.random() * 8); // 8 a 15 moedas
     moedas += ganho;
@@ -276,6 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
       crisePopup.style.display = 'none';
       criseAberta = false;
     }
+    liberarDecisao();
     mostrarTela('menu');
   }
 
