@@ -1,39 +1,144 @@
-# Meu Jogo "Dilema Cívico" 🎮
+# Dilema Cívico — jogo interativo em JavaScript
 
-Oi! Eu criei este jogo interativo chamado Pago ou Não "Dilema Cívico" onde você precisa decidir se vai pagar impostos ou sonegar. Quis simular como nossas decisões fiscais impactam tanto nossas finanças pessoais quanto o bem-estar da sociedade.
 
-## O que tem no meu projeto
 
-Organizei tudo nestes arquivos:
+Jogo web educativo e interativo desenvolvido para explorar, por meio de decisões simuladas, os efeitos de escolhas fiscais sobre o orçamento individual e o bem-estar coletivo. O projeto combina lógica de estados, regras de negócio, auditoria, pontuação e múltiplos finais em uma experiência executada diretamente no navegador.
 
-- **index.html**: Aqui coloquei toda a estrutura das telas - menu, jogo e resultado final
-- **style.css**: Defini toda a parte visual do jogo, cores, fontes e animações dos botões
-- **script.js**: A "alma" do jogo! Toda a lógica, cálculos, auditorias e controle das rodadas
-- **README.md**: Este arquivo aqui que você tá lendo 😊
 
-## Como rodar meu jogo
 
-É bem simples:
+## Visão geral
 
-1. **Se você quiser baixar**:
+
+
+Durante seis rodadas, a pessoa jogadora escolhe entre pagar impostos ou sonegar, considerando renda, recursos disponíveis, risco de auditoria e impacto social. O resultado final apresenta o equilíbrio entre desempenho financeiro e responsabilidade cívica.
+
+
+
+O projeto foi construído como uma aplicação front-end estática, sem dependência de servidor, o que facilita a execução, a demonstração e a publicação como página web.
+
+
+
+## Funcionalidades
+
+
+
+- Seleção de classe social com parâmetros de renda e tributação.
+- 
+- Sistema de seis rodadas com decisões progressivas.
+- 
+- Regras de negócio para pagamento, sonegação, multas e auditoria.
+- 
+- Controle de moedas, bem-estar social, pontuação e estado da partida.
+- 
+- Diferentes resultados finais conforme as decisões tomadas.
+- 
+- Interface responsiva com telas de menu, jogo e resultado.
+- 
+- Efeitos visuais, animações e trilha sonora opcional.
+- 
+- Conteúdo educativo sobre impostos e cidadania.
+- 
+
+
+## Tecnologias
+
+
+
+- **JavaScript** — lógica de jogo, controle de estado, cálculos e eventos.
+- 
+- **HTML5** — estrutura semântica das telas.
+- 
+- **CSS3** — responsividade, composição visual, animações e glassmorphism.
+- 
+- **Web Audio** — suporte à trilha sonora da experiência.
+- 
+
+
+## Estrutura principal
+
+
+
+```text
+
+.
+
+├── index.html   # Estrutura das telas e componentes visuais
+
+├── style.css    # Estilos, responsividade e animações
+
+├── script.js    # Estado da partida, regras e interações
+
+├── game.mp3     # Trilha sonora opcional
+
+└── GDD.md       # Documento de design do jogo
+
+```
+
+
+
+## Como executar
+
+
+
+1. Clone o repositório:
+2. 
+
+
    ```bash
-   git clone [seu-repositorio-aqui]
-   cd pago-ou-nao
+   
+   git clone https://github.com/Tiala2/dilema-civico-javascript.git
+   
+   cd dilema-civico-javascript
+   
    ```
+   
 
-2. **Para jogar**:
-   Só abrir o `index.html` no seu navegador favorito! Funciona direto, sem complicação.
 
-## Como funciona
+2. Abra o arquivo `index.html` diretamente no navegador ou utilize uma extensão de servidor local, como o Live Server do VS Code.
+3. 
 
-Criei um sistema onde:
-- Você começa escolhendo sua classe social (cada uma com renda e impostos diferentes)
-- São 6 rodadas no total
-- A cada rodada você decide: pagar impostos ou sonegar?
-- Pagar te dá bem-estar social, mas custa moedas
-- Sonegar te dá dinheiro na hora, mas reduz bem-estar e tem risco de auditoria!
-- No final, vejo como você se saiu no equilíbrio entre grana e responsabilidade social
 
-## Quer contribuir?
+Não é necessário instalar dependências ou configurar um back-end.
 
-Adoraria receber sugestões! Se você tiver ideias para melhorar o jogo ou encontrar algum bug, fique à vontade para me mandar um pull request ou abrir uma issue. Vamos construir juntos! 🚀
+
+
+## Competências demonstradas
+
+
+
+Este projeto evidencia a capacidade de transformar requisitos em uma experiência interativa, organizar regras de negócio no front-end, manipular eventos e estados com JavaScript e construir uma interface responsiva com HTML e CSS. Também demonstra preocupação com clareza de fluxo, feedback visual e acessibilidade da experiência.
+
+
+
+## Autoria
+
+
+
+Projeto desenvolvido por **Tiala Nobre**, estudante de Análise e Desenvolvimento de Sistemas, com foco em Java, JavaScript, React, Node.js, APIs REST e SQL.
+
+
+
+- GitHub: [Tiala2](https://github.com/Tiala2)
+- 
+- Portfólio: [tialafolio-7qurpzyk.manus.space](https://tialafolio-7qurpzyk.manus.space)
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
