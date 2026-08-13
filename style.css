@@ -12,7 +12,7 @@ body {
     margin: 0;
 }
 
-/* ContÃªiner Principal */
+/* ContÃƒÂªiner Principal */
 .container {
     background-color: rgba(50, 60, 150, 0.85);
     padding: 30px 40px;
@@ -27,7 +27,7 @@ body {
 /* Esconder elementos */
 .hidden { display: none; }
 
-/* TÃ­tulos */
+/* TÃƒÂ­tulos */
 h1 {
     font-size: 2.2em;
     margin: 0 0 25px 0;
@@ -68,7 +68,7 @@ h2 {
     font-size: 1.1em;
 }
 
-/* BotÃµes gerais */
+/* BotÃƒÂµes gerais */
 button {
     width: 100%;
     padding: 15px 20px;
@@ -91,17 +91,17 @@ button:hover {
     box-shadow: 0 6px 12px rgba(0,0,0,0.35);
 }
 
-/* BotÃµes especÃ­ficos com emojis */
-#btn-jogar { background-color: #4CAF50; content: "â–¶ï¸ Jogar"; }
+/* BotÃƒÂµes especÃƒÂ­ficos com emojis */
+#btn-jogar { background-color: #4CAF50; content: "Ã¢â€“Â¶Ã¯Â¸Â Jogar"; }
 #btn-instrucoes { background-color: #2196F3; }
 #btn-voltar-instrucoes { background-color: #9C27B0; }
 #btn-sair { background-color: #f44336; }
 
-#btn-pagar::before { content: "ðŸ’° "; }
-#btn-sonegar::before { content: "âš–ï¸ "; }
+#btn-pagar::before { content: "Ã°Å¸â€™Â° "; }
+#btn-sonegar::before { content: "Ã¢Å¡â€“Ã¯Â¸Â "; }
 #btn-voltar-menu { background-color: #FF9800; }
 
-/* BotÃµes lado a lado */
+/* BotÃƒÂµes lado a lado */
 .decision-buttons { display: flex; gap: 15px; }
 
 /* Tela de classe social */
@@ -136,15 +136,15 @@ button:hover {
     text-shadow: 1px 1px 4px #000;
 }
 
-/* Pop-up de InformaÃ§Ãµes
-   - ComeÃ§a oculto e cobre toda a tela quando exibido
-   - Centraliza o conteÃºdo no meio
+/* Pop-up de InformaÃƒÂ§ÃƒÂµes
+   - ComeÃƒÂ§a oculto e cobre toda a tela quando exibido
+   - Centraliza o conteÃƒÂºdo no meio
 */
 #info-popup {
-    /* ComeÃ§a oculto */
+    /* ComeÃƒÂ§a oculto */
     display: none;
 
-    /* SobrepÃµe tudo */
+    /* SobrepÃƒÂµe tudo */
     position: fixed;
     top: 0;
     left: 0;
@@ -155,20 +155,20 @@ button:hover {
     /* Fundo escurecido (overlay) */
     background-color: rgba(0, 0, 0, 0.6);
 
-    /* CentralizaÃ§Ã£o do conteÃºdo */
+    /* CentralizaÃƒÂ§ÃƒÂ£o do conteÃƒÂºdo */
     justify-content: center;
     align-items: center;
 
-    /* Padding para nÃ£o colar nas bordas em telas pequenas */
+    /* Padding para nÃƒÂ£o colar nas bordas em telas pequenas */
     padding: 16px;
     box-sizing: border-box;
 }
 
-/* Caixa de conteÃºdo do pop-up */
+/* Caixa de conteÃƒÂºdo do pop-up */
 #info-popup-content {
     /* ADAPTE AQUI O VISUAL DO SEU JOGO:
        - font-family: manter a fonte do jogo
-       - background-color: cor base do cartÃ£o
+       - background-color: cor base do cartÃƒÂ£o
        - border / border-color: destaque no tema do jogo
        - box-shadow: profundidade semelhante ao restante da UI
     */
@@ -194,7 +194,7 @@ button:hover {
     margin-bottom: 18px;
 }
 
-/* BotÃ£o de fechar (Voltar) do pop-up */
+/* BotÃƒÂ£o de fechar (Voltar) do pop-up */
 #voltar-btn {
     /* ADAPTE AQUI O VISUAL DO SEU JOGO */
     background-color: #FF9800; /* Cor base do jogo (combina com #btn-voltar-menu) */
@@ -220,14 +220,14 @@ button:hover {
 
 /* Pop-up de Crise
    - ADAPTE AQUI O VISUAL DO SEU JOGO
-   - ComeÃ§a oculto e cobre toda a tela quando exibido
-   - Centraliza o conteÃºdo no meio da viewport
+   - ComeÃƒÂ§a oculto e cobre toda a tela quando exibido
+   - Centraliza o conteÃƒÂºdo no meio da viewport
 */
 #crise-popup {
-    /* ComeÃ§a oculto */
+    /* ComeÃƒÂ§a oculto */
     display: none;
 
-    /* SobrepÃµe tudo */
+    /* SobrepÃƒÂµe tudo */
     position: fixed;
     top: 0;
     left: 0;
@@ -238,16 +238,16 @@ button:hover {
     /* Fundo escurecido (overlay) */
     background-color: rgba(0, 0, 0, 0.65);
 
-    /* CentralizaÃ§Ã£o do conteÃºdo */
+    /* CentralizaÃƒÂ§ÃƒÂ£o do conteÃƒÂºdo */
     justify-content: center;
     align-items: center;
 
-    /* Padding para nÃ£o colar nas bordas em telas pequenas */
+    /* Padding para nÃƒÂ£o colar nas bordas em telas pequenas */
     padding: 16px;
     box-sizing: border-box;
 }
 
-/* Caixa de conteÃºdo do pop-up */
+/* Caixa de conteÃƒÂºdo do pop-up */
 #crise-popup-content {
     background-color: rgba(40, 50, 140, 0.98);
     color: #fff;
@@ -277,14 +277,14 @@ button:hover {
 }
 
 #btn-pedir-emprestimo {
-    /* BotÃ£o positivo */
+    /* BotÃƒÂ£o positivo */
     background-color: #4CAF50;
     color: #111;
     border: 2px solid #3F9144;
 }
 
 #btn-sonegar-crise {
-    /* BotÃ£o de alerta/negativo */
+    /* BotÃƒÂ£o de alerta/negativo */
     background-color: #f44336;
     color: #111;
     border: 2px solid #d4382b;
@@ -296,7 +296,7 @@ button:hover {
     filter: brightness(1.05);
 }
 
-/*Alerta (fiscalizaÃ§Ã£o) */
+/*Alerta (fiscalizaÃƒÂ§ÃƒÂ£o) */
 #alert-toast {
     display: none;
     position: fixed;
@@ -325,7 +325,7 @@ button:hover {
     to { transform: translate(-50%, 0); opacity: 1; }
 }
 
-/* Refinamentos visuais â€” identidade original preservada */
+/* Refinamentos visuais Ã¢â‚¬â€ identidade original preservada */
 * { box-sizing: border-box; }
 body { min-height: 100vh; overflow-x: hidden; padding: 16px; }
 .container { max-width: 520px; width: min(100%, 520px); padding: 28px 34px; border-radius: 22px; transition: box-shadow 180ms ease, transform 180ms ease; }
@@ -353,3 +353,57 @@ button:focus-visible { outline: 3px solid rgba(255,193,7,.85); outline-offset: 3
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 1ms !important; animation-duration: 1ms !important; }
 }
+
+/* RevisÃ£o visual perceptÃ­vel â€” tema original preservado */
+html { min-height: 100%; background: #20245f; }
+body {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(116, 126, 255, .24), transparent 30%),
+    radial-gradient(circle at 84% 88%, rgba(3, 169, 244, .18), transparent 28%),
+    linear-gradient(145deg, #242866 0%, #2c2f72 48%, #1e225c 100%);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .22;
+  background-image: radial-gradient(rgba(255,255,255,.32) .7px, transparent .7px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+}
+.container { position: relative; z-index: 1; overflow: hidden; }
+.container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,.1), transparent 42%);
+}
+.screen-enter { animation: screen-enter 260ms cubic-bezier(.22, .8, .25, 1) both; }
+@keyframes screen-enter {
+  from { opacity: 0; transform: translateY(8px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+button::before { font-family: Arial, sans-serif; }
+#btn-jogar::before { content: 'â–¶ '; }
+#btn-instrucoes::before, #btn-voltar-instrucoes::before { content: 'â“˜ '; }
+#btn-sair::before { content: 'Ã— '; }
+#btn-pagar::before { content: 'âœ“ '; }
+#btn-sonegar::before { content: 'âš– '; }
+#btn-voltar-menu::before, #voltar-btn::before { content: 'â† '; }
+#btn-pedir-emprestimo::before { content: '$ '; }
+#btn-sonegar-crise::before { content: 'âš  '; }
+button::before { display: inline-block; margin-right: 5px; font-weight: 700; }
+#btn-pagar::before, #btn-sonegar::before { content: none; }
+#btn-pagar, #btn-sonegar, #btn-pedir-emprestimo, #btn-sonegar-crise { position: relative; }
+#btn-pagar::after { content: 'âœ“'; margin-right: 7px; }
+#btn-sonegar::after { content: 'âš–'; margin-right: 7px; }
+#btn-pedir-emprestimo::after { content: '$'; margin-right: 7px; }
+#btn-sonegar-crise::after { content: '!'; margin-right: 7px; }
+#btn-pagar::after, #btn-sonegar::after, #btn-pedir-emprestimo::after, #btn-sonegar-crise::after { font-family: Arial, sans-serif; font-weight: 800; }
+@media (prefers-reduced-motion: reduce) { .screen-enter { animation: none; } }
